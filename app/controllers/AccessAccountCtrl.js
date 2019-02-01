@@ -14,11 +14,11 @@ module.exports.Login = function(application, req, res){
 
         companyDao.access(company).then(value => {
             console.log(value);
-            if(!value.length) res.json({msg: 'Email ou senha inválidos.'});
+            if(!value._id) res.json({msg: 'Email ou senha inválidos.'});
             else {
-                if(value[0].status == 'WAITING_CONFIRM') return res.json({result: value, msg: 'Conta aguardando ativação no email.'});
-                if(value[0].status == 'BLOCK') return res.json({result: value, msg: 'Conta suspensa, entre em contato conosco.'});
-                if(value[0].status == 'ATIVE') return res.json({result: value, msg: 'Login realizado com sucesso.'});
+                if(value.status == 'WAITING_CONFIRM') return res.json({result: value, msg: 'Conta aguardando ativação no email.'});
+                if(value.status == 'BLOCK') return res.json({result: value, msg: 'Conta suspensa, entre em contato conosco.'});
+                if(value.status == 'ATIVE') return res.json({result: value, msg: 'Login realizado com sucesso.'});
             }
             
             client.close();

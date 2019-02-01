@@ -22,7 +22,7 @@ CompanyDao.prototype.isExist = function(company){
     }
 
     return new Promise((resolve, reject) => {
-        this._connection.find(query).toArray((err, result) => {
+        this._connection.findOne(query, (err, result) => {
             if(err) reject(err);
             resolve(result);
         });
@@ -49,7 +49,7 @@ CompanyDao.prototype.access = function(company){
     }
     
     return new Promise((resolve, reject) => {
-        this._connection.find(query).toArray((err, result) => {
+        this._connection.findOne(query, (err, result) => {
             if(err) reject(err);
             resolve(result);
         });

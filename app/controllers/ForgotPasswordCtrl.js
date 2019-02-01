@@ -13,7 +13,7 @@ module.exports.ChangePassword = function(application, req, res){
 
         companyDao.isExist(company).then(value => {
             
-            if(value.length) res.json({ result: value, msg: 'Instruções para mudança de senha, foram enviadas ao email informado'});
+            if(value._id) res.json({ result: value, msg: 'Instruções para mudança de senha, foram enviadas ao email informado'});
             else res.json({ result: value, msg: 'Email informado não consta na base de dados.'});
             
             client.close();
