@@ -14,7 +14,7 @@ module.exports.Login = function(application, req, res){
 
         companyDao.access(company).then(value => {
             console.log(value);
-            if(!value._id) res.json({msg: 'Email ou senha inválidos.'});
+            if(!value) res.json({msg: 'Email ou senha inválidos.'});
             else {
                 if(value.status == 'WAITING_CONFIRM') return res.json({result: value, msg: 'Conta aguardando ativação no email.'});
                 if(value.status == 'BLOCK') return res.json({result: value, msg: 'Conta suspensa, entre em contato conosco.'});

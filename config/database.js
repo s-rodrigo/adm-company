@@ -1,4 +1,6 @@
-const MongoClient = require('mongodb').MongoClient;
+const mongodb = require('mongodb');
+const MongoClient = mongodb.MongoClient;
+const ObjectId = mongodb.ObjectID;
  
 // Connection URL
 const user = 'rodrigogsantos';
@@ -23,6 +25,7 @@ let connection = () => {
 module.exports = function(){
   return database = {
     connection: connection,
-    nameDatabase: dbName
+    nameDatabase: dbName,
+    ObjectId: ObjectId
   }
 }

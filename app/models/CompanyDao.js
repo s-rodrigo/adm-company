@@ -56,6 +56,19 @@ CompanyDao.prototype.access = function(company){
     });
 }
 
+CompanyDao.prototype.update = function(company, ObjectId){
+
+    return new Promise((resolve, reject) => {
+        this._connection.updateOne(
+            { _id : ObjectId(company.id)}, 
+            { $set: company }, (err, result) => {
+            
+            if(err) reject(err);
+            resolve(result);
+          });
+    });
+}
+
 module.exports = function(){
     return CompanyDao;
 }
