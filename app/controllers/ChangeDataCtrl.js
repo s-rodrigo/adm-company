@@ -13,6 +13,7 @@ module.exports.UpdateCompany = function(application, req, res){
 
         companyDao.update(dataCompany, ObjectId).then( result => {
             res.json(result);
+            client.close();
         });
     });
 }

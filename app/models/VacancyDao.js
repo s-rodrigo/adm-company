@@ -20,13 +20,13 @@ VacancyDao.prototype.getOne = function(id, ObjectId){
     });
 }
 
-VacancyDao.prototype.filter = function(){
+VacancyDao.prototype.filter = function(pagination){
+    let page = pagination - 1;
 
-    let options = {
-        "limit": 20,
-        "skip": 10
-        //"sort": "title"
-    }
+    let options = {};
+    options.limit = 10;
+    options.skip = page == 0 ? page : ( page * options.limit);
+    //"sort": "title"
 
     return new Promise((resolve, reject) => {
         
