@@ -39,6 +39,16 @@ VacancyDao.prototype.filter = function(pagination){
     });
 }
 
+VacancyDao.prototype.addView = function(vacancy, ObjectId){
+
+    return new Promise((resolve, reject) => {
+        this._connection.updateOne({_id: ObjectId(vacancy.id)}, {$inc: {views: 1}}, (err, result) => {
+            if(err) reject(err);
+            resolve(result);
+        });
+    });
+}
+
 module.exports = function(){
     return VacancyDao;
 };
