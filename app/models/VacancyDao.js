@@ -21,12 +21,15 @@ VacancyDao.prototype.getOne = function(id, ObjectId){
 }
 
 VacancyDao.prototype.filter = function(pagination){
-    let page = pagination - 1;
 
     let options = {};
-    options.limit = 10;
-    options.skip = page == 0 ? page : ( page * options.limit);
-    //"sort": "title"
+    if(pagination){
+        let page = pagination - 1;
+    
+        options.limit = 10;
+        options.skip = page == 0 ? page : ( page * options.limit);
+        //"sort": "title"
+    }
 
     return new Promise((resolve, reject) => {
         

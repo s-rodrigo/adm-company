@@ -11,10 +11,13 @@ module.exports.filter = function(application, req, res){
 
         let vacancyDao = new application.app.models.VacancyDao(db);
 
-        vacancyDao.filter(page).then( result => {
-            res.json(result);
-            client.close();
-        });
+        vacancyDao.filter(null)
+        .then(count =>{
+            vacancyDao.filter(page).then( result => {
+                res.json({size: count.length, data: result});
+                client.close();
+            });
+        })
     });
 
 }

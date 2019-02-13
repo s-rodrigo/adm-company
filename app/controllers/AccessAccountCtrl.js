@@ -14,6 +14,11 @@ module.exports.Login = function(application, req, res){
 
         if(!company.email || !company.password) return res.status('401').json({auth: null, token: null, msg: 'Email e senha são obrigatórios.'});
 
+        expiresIn = { expiresIn: 300 };
+
+        if(company.keepOn) expiresIn = {};
+        else expiresIn = { expiresIn: 300 };
+
         companyDao.access(company).then(value => {
             if(!value) return res.status('401').json({auth: null, token: null, msg: 'Email ou senha inválidos'});
             else {
@@ -23,7 +28,7 @@ module.exports.Login = function(application, req, res){
 
                 if(value.status == 'ATIVE') {
                     
-                    let token = JWT.sign({ id: value.id }, process.env.SECRET, {expiresIn: 300});
+                    let token = JWT.sign({ id: value.id }, process.env.SECRET, expiresIn);
 
                     return res.status('200').json({auth: value, token: token, msg: 'Acesso realizado com sucesso.'});
                 }
