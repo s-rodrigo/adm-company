@@ -20,25 +20,32 @@ VacancyDao.prototype.getOne = function(id, ObjectId){
     });
 }
 
-VacancyDao.prototype.filter = function(pagination){
-
+VacancyDao.prototype.filter = function(query){
+    let filter = {};
     let options = {};
-    if(pagination){
-        let page = pagination - 1;
-    
-        options.limit = 10;
-        options.skip = page == 0 ? page : ( page * options.limit);
-        //"sort": "title"
-    }
+    let page = query.page - 1;
+
+    options.limit = 10;
+    options.skip = page == 0 ? page : ( page * options.limit);
 
     return new Promise((resolve, reject) => {
         
-        this._connection.find({}, options)
+        this._connection.find( filter, options)
                     .toArray((err, result) => {
                         
                 if(err) reject(err);
                 resolve(result);
         });
+    });
+}
+
+VacancyDao.prototype.countCollection = function(query){
+    let filter = {};
+    if(query.filter != '') filter = { title: { $regex: '.*'+ query.filter +'.*', $options: 'i'}};
+
+    return new Promise((resolve, reject) => {
+        
+        resolve(this._connection.find(filter).count());
     });
 }
 
