@@ -14,8 +14,8 @@ module.exports.Register = function(application, req, res){
 
         companyDao.isExist(company).then(value => {
             
-            if(value._id) res.json({msg: 'Endereço de email já está sendo utilizado.'});
-            else companyDao.register(company).then(result => res.json({ value: result, msg: 'Cadastrado com sucesso, ative sua conta no email.'}));
+            if(value) res.status('400').json({msg: 'Endereço de email já está sendo utilizado.'});
+            else companyDao.register(company).then(result => res.status('200').json({ value: result, msg: 'Cadastrado com sucesso, ative sua conta no email.'}));
             
             client.close();
         });
