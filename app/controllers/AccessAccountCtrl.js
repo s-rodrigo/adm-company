@@ -26,7 +26,7 @@ module.exports.Login = function(application, req, res){
 
                 if(value.status == 'BLOCK') return res.status('401').json({auth: null, token: null, msg: 'Conta suspensa, em caso de dúvidas entrar em contato.'});
 
-                if(value.status == 'ATIVE') {
+                if(value.status == 'ACTIVE') {
                     
                     let token = JWT.sign({ id: value.id }, process.env.SECRET, expiresIn);
 
