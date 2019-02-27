@@ -32,7 +32,7 @@ app.use((req, res, next) => {
 });
 
 //Initialize consign
-consign({cwd: process.cwd()})
+consign()
          .include('./app/routes')
          .then('./app/controllers')
          .then('./app/models')
