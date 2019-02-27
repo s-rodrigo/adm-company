@@ -13,8 +13,8 @@ var corsOptions = {
     optionsSuccessStatus: 200
 }
 
-app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors(corsOptions));
 
 app.use((req, res, next) => {
@@ -32,11 +32,11 @@ app.use((req, res, next) => {
 });
 
 //Initialize consign
-consign()
-         .include('./app/routes')
-         .then('./app/controllers')
-         .then('./app/models')
-         .then('./config/database.js')
+consign({cwd: process.cwd() + "/app"})
+         .include('./routes')
+         .then('./controllers')
+         .then('./models')
+         .then('../config/database.js')
          .into(app);
 
 module.exports = app;
