@@ -33,10 +33,10 @@ app.use((req, res, next) => {
 
 //Initialize consign
 consign()
-         .include('./routes')
-         .then('./controllers')
-         .then('./models')
-         .then('../config/database.js')
+         .include('./app/routes')
+         .then('./app/controllers')
+         .then('./app/models')
+         .then('./config/database.js')
          .into(app);
 
 module.exports = app;
