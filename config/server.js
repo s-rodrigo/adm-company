@@ -33,7 +33,9 @@ app.use((req, res, next) => {
 
 //Initialize consign
 consign()
-         .include('./app')
+         .include('./app/routes')
+         .then('./app/controllers')
+         .then('./app/models')
          .then('./config/database.js')
          .into(app);
 
