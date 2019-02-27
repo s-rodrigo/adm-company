@@ -8,7 +8,7 @@ module.exports.filter = function(application, req, res){
         client = conn;
         let db = client.db(nameDatabase);
 
-        let vacancyDao = new application.app.models.VacancyDao(db);
+        let vacancyDao = new application.models.VacancyDao(db);
 
         vacancyDao.filter(query).then(result => {
             if(query.size) res.json({size: query.size, data: result});
