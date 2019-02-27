@@ -33,9 +33,9 @@ app.use((req, res, next) => {
 
 //Initialize consign
 consign({cwd: process.cwd() + "/app"})
-         .include('./routes')
-         .then('./controllers')
-         .then('./models')
+         .include('routes')
+         .then('controllers')
+         .then('models')
          .then('../config/database.js')
          .into(app);
 
