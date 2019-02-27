@@ -1,7 +1,6 @@
 let JWT = require('jsonwebtoken');
 
 module.exports.Login = function(application, req, res){
-    console.log('controller');
     let nameDatabase = application.config.database.nameDatabase;
     let client = {};
     let company = req.body;
@@ -10,7 +9,7 @@ module.exports.Login = function(application, req, res){
         client = conn;
 
         let db = client.db(nameDatabase);
-        let companyDao = new application.app.models.CompanyDao(db);
+        let companyDao = new application.models.CompanyDao(db);
 
         if(!company.email || !company.password) return res.status('401').json({auth: null, token: null, msg: 'Email e senha são obrigatórios.'});
 
