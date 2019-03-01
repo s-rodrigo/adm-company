@@ -33,7 +33,7 @@ module.exports.Register = function(application, req, res){
                     '<style>p {font-family: Arial, Helvetica, sans-serif;font-size: 12px;}span {font-size: 14px;}'+        
                     '</style>';
 
-                    let sendEmail = new application.app.models.SendEmail(company.email, title, text);
+                    let sendEmail = new application.models.SendEmail(company.email, title, text);
                     sendEmail.send();
                     return res.status('200').json({ value: result, msg: 'Cadastrado com sucesso, ative sua conta no email.'});
                 });
