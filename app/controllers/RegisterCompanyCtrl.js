@@ -14,7 +14,7 @@ module.exports.Register = function(application, req, res){
         client = conn;
 
         let db = client.db(nameDatabase);
-        let companyDao = new application.app.models.CompanyDao(db);
+        let companyDao = new application.models.CompanyDao(db);
 
         companyDao.isExist(company).then(value => {
             
