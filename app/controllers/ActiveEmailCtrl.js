@@ -10,7 +10,7 @@ module.exports.confirm = (application, req, res) => {
         client = conn;
 
         let db = client.db(nameDatabase);
-        let companyDao = new application.app.models.CompanyDao(db);
+        let companyDao = new application.models.CompanyDao(db);
 
         companyDao.update(userId, update, ObjectId).then( result => {
             res.json(result);
