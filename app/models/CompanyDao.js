@@ -52,7 +52,7 @@ CompanyDao.prototype.access = function(company){
         console.log(company);
         this._connection.findOne(query, (err, result) => {
             console.log('ERRRO:');
-            console.log(err);
+            console.log(result);
             if(err) reject(err);
             resolve(result);
         });
