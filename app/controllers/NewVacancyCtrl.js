@@ -7,7 +7,7 @@ module.exports.save = function(application, req, res){
     application.config.database.connection().then( conn => {
         client = conn;
         let db = client.db(nameDatabase);
-        let vacancyDao = new application.app.models.VacancyDao(db);
+        let vacancyDao = new application.models.VacancyDao(db);
 
         vacancyDao.save(vacancy).then(result => {
             res.json(result);
