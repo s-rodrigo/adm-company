@@ -49,10 +49,7 @@ CompanyDao.prototype.access = function(company){
     }
     
     return new Promise((resolve, reject) => {
-        console.log(company);
         this._connection.findOne(query, (err, result) => {
-            console.log('ERRRO:');
-            console.log(result);
             if(err) reject(err);
             resolve(result);
         });

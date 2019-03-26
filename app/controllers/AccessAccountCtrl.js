@@ -19,6 +19,7 @@ module.exports.Login = function(application, req, res){
         else expiresIn = { expiresIn: 300 };
 
         companyDao.access(company).then(value => {
+            console.log(value);
             if(!value) return res.status('401').json({auth: null, token: null, msg: 'Email ou senha inválidos'});
             else {
                 if(value.status == 'WAITING_CONFIRM') return res.status('401').json({auth: null, token: null, msg: 'Conta aguardando ativação no email.'});
